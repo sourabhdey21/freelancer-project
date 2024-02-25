@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  registry:
+    image: registry
+    container_name: my-registry
+    ports:
+      - "5000:5000"
+    restart: always
+
+  bitcoin-exporter:
+    build:
+      context: /root/freelancer/bitcoin/freelancer-project/  # Replace with the path to your bitcoin-exporter Dockerfile and source code
+    image: bitcoin_exporter:latest
+    container_name: bitcoin-exporter
+    depends_on:
+      - registry
+    restart: always

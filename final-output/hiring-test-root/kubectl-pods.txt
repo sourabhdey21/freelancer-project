@@ -1,0 +1,862 @@
+Name:             helm-install-traefik-4mssz
+Namespace:        kube-system
+Priority:         0
+Service Account:  helm-traefik
+Node:             cloud/192.168.1.101
+Start Time:       Sun, 25 Feb 2024 08:56:35 +0000
+Labels:           batch.kubernetes.io/controller-uid=b95c91f5-6fb5-4f8d-8abf-dbd736f67d5f
+                  batch.kubernetes.io/job-name=helm-install-traefik
+                  controller-uid=b95c91f5-6fb5-4f8d-8abf-dbd736f67d5f
+                  helmcharts.helm.cattle.io/chart=traefik
+                  job-name=helm-install-traefik
+Annotations:      helmcharts.helm.cattle.io/configHash: SHA256=2C8876269AFB411F60BCDA289A1957C0126147D80F1B0AC6BD2C43C10FE296E9
+Status:           Succeeded
+SeccompProfile:   RuntimeDefault
+IP:               
+IPs:              <none>
+Controlled By:    Job/helm-install-traefik
+Containers:
+  helm:
+    Container ID:  containerd://7f9be04fabde67aa0bca837fec3cf22a618e5f71acd9aa27ede35b897d61ee49
+    Image:         rancher/klipper-helm:v0.8.2-build20230815
+    Image ID:      docker.io/rancher/klipper-helm@sha256:b0b0c4f73f2391697edb52adffe4fc490de1c8590606024515bb906b2813554a
+    Port:          <none>
+    Host Port:     <none>
+    Args:
+      install
+      --set-string
+      global.systemDefaultRegistry=
+    State:      Terminated
+      Reason:   Completed
+      Message:  Installing helm_v3 chart
+
+      Exit Code:    0
+      Started:      Sun, 25 Feb 2024 08:57:02 +0000
+      Finished:     Sun, 25 Feb 2024 08:57:05 +0000
+    Ready:          False
+    Restart Count:  1
+    Environment:
+      NAME:                   traefik
+      VERSION:                
+      REPO:                   
+      HELM_DRIVER:            secret
+      CHART_NAMESPACE:        kube-system
+      CHART:                  https://%{KUBERNETES_API}%/static/charts/traefik-25.0.2+up25.0.0.tgz
+      HELM_VERSION:           
+      TARGET_NAMESPACE:       kube-system
+      AUTH_PASS_CREDENTIALS:  false
+      NO_PROXY:               .svc,.cluster.local,10.42.0.0/16,10.43.0.0/16
+      FAILURE_POLICY:         reinstall
+    Mounts:
+      /chart from content (rw)
+      /config from values (rw)
+      /home/klipper-helm/.cache from klipper-cache (rw)
+      /home/klipper-helm/.config from klipper-config (rw)
+      /home/klipper-helm/.helm from klipper-helm (rw)
+      /tmp from tmp (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-hbcf4 (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             False 
+  ContainersReady   False 
+  PodScheduled      True 
+Volumes:
+  klipper-helm:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     Memory
+    SizeLimit:  <unset>
+  klipper-cache:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     Memory
+    SizeLimit:  <unset>
+  klipper-config:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     Memory
+    SizeLimit:  <unset>
+  tmp:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     Memory
+    SizeLimit:  <unset>
+  values:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  chart-values-traefik
+    Optional:    false
+  content:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      chart-content-traefik
+    Optional:  false
+  kube-api-access-hbcf4:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+
+
+Name:             helm-install-traefik-crd-rjhbb
+Namespace:        kube-system
+Priority:         0
+Service Account:  helm-traefik-crd
+Node:             cloud/192.168.1.101
+Start Time:       Sun, 25 Feb 2024 08:56:35 +0000
+Labels:           batch.kubernetes.io/controller-uid=d29c73be-2965-48ac-ab37-2e7583e7fa3f
+                  batch.kubernetes.io/job-name=helm-install-traefik-crd
+                  controller-uid=d29c73be-2965-48ac-ab37-2e7583e7fa3f
+                  helmcharts.helm.cattle.io/chart=traefik-crd
+                  job-name=helm-install-traefik-crd
+Annotations:      helmcharts.helm.cattle.io/configHash: SHA256=E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
+Status:           Succeeded
+SeccompProfile:   RuntimeDefault
+IP:               
+IPs:              <none>
+Controlled By:    Job/helm-install-traefik-crd
+Containers:
+  helm:
+    Container ID:  containerd://3d1799c47be499f5d5a1e76c549712073fc7e6202dc84e0380560dc14caa5d94
+    Image:         rancher/klipper-helm:v0.8.2-build20230815
+    Image ID:      docker.io/rancher/klipper-helm@sha256:b0b0c4f73f2391697edb52adffe4fc490de1c8590606024515bb906b2813554a
+    Port:          <none>
+    Host Port:     <none>
+    Args:
+      install
+    State:      Terminated
+      Reason:   Completed
+      Message:  Installing helm_v3 chart
+
+      Exit Code:    0
+      Started:      Sun, 25 Feb 2024 08:57:01 +0000
+      Finished:     Sun, 25 Feb 2024 08:57:02 +0000
+    Ready:          False
+    Restart Count:  0
+    Environment:
+      NAME:                   traefik-crd
+      VERSION:                
+      REPO:                   
+      HELM_DRIVER:            secret
+      CHART_NAMESPACE:        kube-system
+      CHART:                  https://%{KUBERNETES_API}%/static/charts/traefik-crd-25.0.2+up25.0.0.tgz
+      HELM_VERSION:           
+      TARGET_NAMESPACE:       kube-system
+      AUTH_PASS_CREDENTIALS:  false
+      NO_PROXY:               .svc,.cluster.local,10.42.0.0/16,10.43.0.0/16
+      FAILURE_POLICY:         reinstall
+    Mounts:
+      /chart from content (rw)
+      /config from values (rw)
+      /home/klipper-helm/.cache from klipper-cache (rw)
+      /home/klipper-helm/.config from klipper-config (rw)
+      /home/klipper-helm/.helm from klipper-helm (rw)
+      /tmp from tmp (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-x4jzv (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             False 
+  ContainersReady   False 
+  PodScheduled      True 
+Volumes:
+  klipper-helm:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     Memory
+    SizeLimit:  <unset>
+  klipper-cache:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     Memory
+    SizeLimit:  <unset>
+  klipper-config:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     Memory
+    SizeLimit:  <unset>
+  tmp:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     Memory
+    SizeLimit:  <unset>
+  values:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  chart-values-traefik-crd
+    Optional:    false
+  content:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      chart-content-traefik-crd
+    Optional:  false
+  kube-api-access-x4jzv:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+
+
+Name:             svclb-traefik-b6ddbb40-9sr57
+Namespace:        kube-system
+Priority:         0
+Service Account:  svclb
+Node:             cloud/192.168.1.101
+Start Time:       Sun, 25 Feb 2024 08:57:03 +0000
+Labels:           app=svclb-traefik-b6ddbb40
+                  controller-revision-hash=f966f8745
+                  pod-template-generation=1
+                  svccontroller.k3s.cattle.io/svcname=traefik
+                  svccontroller.k3s.cattle.io/svcnamespace=kube-system
+Annotations:      <none>
+Status:           Running
+IP:               10.42.0.31
+IPs:
+  IP:           10.42.0.31
+Controlled By:  DaemonSet/svclb-traefik-b6ddbb40
+Containers:
+  lb-tcp-80:
+    Container ID:   containerd://73c7f433aee4f19e99bf047203a053c2bb1e529b594a035757c723b9220db117
+    Image:          rancher/klipper-lb:v0.4.5
+    Image ID:       docker.io/rancher/klipper-lb@sha256:fa2257de248f46c303d0f39a8ebe8644ba5ac63d332c7d02bf6ee26a981243bc
+    Port:           80/TCP
+    Host Port:      80/TCP
+    State:          Running
+      Started:      Sun, 25 Feb 2024 15:34:30 +0000
+    Last State:     Terminated
+      Reason:       Unknown
+      Exit Code:    255
+      Started:      Sun, 25 Feb 2024 15:28:52 +0000
+      Finished:     Sun, 25 Feb 2024 15:34:28 +0000
+    Ready:          True
+    Restart Count:  2
+    Environment:
+      SRC_PORT:    80
+      SRC_RANGES:  0.0.0.0/0
+      DEST_PROTO:  TCP
+      DEST_PORT:   80
+      DEST_IPS:    10.43.217.186
+    Mounts:        <none>
+  lb-tcp-443:
+    Container ID:   containerd://18b2d98a061f603e07f0246a767df49fe646e0de53cd6c33203dd13f888604d1
+    Image:          rancher/klipper-lb:v0.4.5
+    Image ID:       docker.io/rancher/klipper-lb@sha256:fa2257de248f46c303d0f39a8ebe8644ba5ac63d332c7d02bf6ee26a981243bc
+    Port:           443/TCP
+    Host Port:      443/TCP
+    State:          Running
+      Started:      Sun, 25 Feb 2024 15:34:30 +0000
+    Last State:     Terminated
+      Reason:       Unknown
+      Exit Code:    255
+      Started:      Sun, 25 Feb 2024 15:28:53 +0000
+      Finished:     Sun, 25 Feb 2024 15:34:28 +0000
+    Ready:          True
+    Restart Count:  2
+    Environment:
+      SRC_PORT:    443
+      SRC_RANGES:  0.0.0.0/0
+      DEST_PROTO:  TCP
+      DEST_PORT:   443
+      DEST_IPS:    10.43.217.186
+    Mounts:        <none>
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:            <none>
+QoS Class:          BestEffort
+Node-Selectors:     <none>
+Tolerations:        CriticalAddonsOnly op=Exists
+                    node-role.kubernetes.io/control-plane:NoSchedule op=Exists
+                    node-role.kubernetes.io/master:NoSchedule op=Exists
+                    node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                    node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                    node.kubernetes.io/not-ready:NoExecute op=Exists
+                    node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                    node.kubernetes.io/unreachable:NoExecute op=Exists
+                    node.kubernetes.io/unschedulable:NoSchedule op=Exists
+Events:             <none>
+
+
+Name:                 traefik-f4564c4f4-zqtt9
+Namespace:            kube-system
+Priority:             2000000000
+Priority Class Name:  system-cluster-critical
+Service Account:      traefik
+Node:                 cloud/192.168.1.101
+Start Time:           Sun, 25 Feb 2024 08:57:03 +0000
+Labels:               app.kubernetes.io/instance=traefik-kube-system
+                      app.kubernetes.io/managed-by=Helm
+                      app.kubernetes.io/name=traefik
+                      helm.sh/chart=traefik-25.0.2_up25.0.0
+                      pod-template-hash=f4564c4f4
+Annotations:          prometheus.io/path: /metrics
+                      prometheus.io/port: 9100
+                      prometheus.io/scrape: true
+Status:               Running
+IP:                   10.42.0.30
+IPs:
+  IP:           10.42.0.30
+Controlled By:  ReplicaSet/traefik-f4564c4f4
+Containers:
+  traefik:
+    Container ID:  containerd://68f5ca832f34d21be71cc46de4adfb8e7cd7fcae7ebf287d8bc416c99a40a3e2
+    Image:         rancher/mirrored-library-traefik:2.10.5
+    Image ID:      docker.io/rancher/mirrored-library-traefik@sha256:ca9c8fbe001070c546a75184e3fd7f08c3e47dfc1e89bff6fe2edd302accfaec
+    Ports:         9100/TCP, 9000/TCP, 8000/TCP, 8443/TCP
+    Host Ports:    0/TCP, 0/TCP, 0/TCP, 0/TCP
+    Args:
+      --global.checknewversion
+      --global.sendanonymoususage
+      --entrypoints.metrics.address=:9100/tcp
+      --entrypoints.traefik.address=:9000/tcp
+      --entrypoints.web.address=:8000/tcp
+      --entrypoints.websecure.address=:8443/tcp
+      --api.dashboard=true
+      --ping=true
+      --metrics.prometheus=true
+      --metrics.prometheus.entrypoint=metrics
+      --providers.kubernetescrd
+      --providers.kubernetesingress
+      --providers.kubernetesingress.ingressendpoint.publishedservice=kube-system/traefik
+      --entrypoints.websecure.http.tls=true
+    State:          Running
+      Started:      Sun, 25 Feb 2024 15:34:30 +0000
+    Last State:     Terminated
+      Reason:       Unknown
+      Exit Code:    255
+      Started:      Sun, 25 Feb 2024 15:28:52 +0000
+      Finished:     Sun, 25 Feb 2024 15:34:28 +0000
+    Ready:          True
+    Restart Count:  2
+    Liveness:       http-get http://:9000/ping delay=2s timeout=2s period=10s #success=1 #failure=3
+    Readiness:      http-get http://:9000/ping delay=2s timeout=2s period=10s #success=1 #failure=1
+    Environment:
+      POD_NAME:       traefik-f4564c4f4-zqtt9 (v1:metadata.name)
+      POD_NAMESPACE:  kube-system (v1:metadata.namespace)
+    Mounts:
+      /data from data (rw)
+      /tmp from tmp (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-j8x6d (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  data:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  tmp:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  kube-api-access-j8x6d:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 CriticalAddonsOnly op=Exists
+                             node-role.kubernetes.io/control-plane:NoSchedule op=Exists
+                             node-role.kubernetes.io/master:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+
+
+Name:                 coredns-6799fbcd5-cb5ks
+Namespace:            kube-system
+Priority:             2000000000
+Priority Class Name:  system-cluster-critical
+Service Account:      coredns
+Node:                 cloud/192.168.1.101
+Start Time:           Sun, 25 Feb 2024 08:56:35 +0000
+Labels:               k8s-app=kube-dns
+                      pod-template-hash=6799fbcd5
+Annotations:          <none>
+Status:               Running
+IP:                   10.42.0.34
+IPs:
+  IP:           10.42.0.34
+Controlled By:  ReplicaSet/coredns-6799fbcd5
+Containers:
+  coredns:
+    Container ID:  containerd://fe4ed5bbf97b89fcb109436986ff2a9bb05f85e081386c00606d428f11332846
+    Image:         rancher/mirrored-coredns-coredns:1.10.1
+    Image ID:      docker.io/rancher/mirrored-coredns-coredns@sha256:a11fafae1f8037cbbd66c5afa40ba2423936b72b4fd50a7034a7e8b955163594
+    Ports:         53/UDP, 53/TCP, 9153/TCP
+    Host Ports:    0/UDP, 0/TCP, 0/TCP
+    Args:
+      -conf
+      /etc/coredns/Corefile
+    State:          Running
+      Started:      Sun, 25 Feb 2024 15:34:30 +0000
+    Last State:     Terminated
+      Reason:       Unknown
+      Exit Code:    255
+      Started:      Sun, 25 Feb 2024 15:28:52 +0000
+      Finished:     Sun, 25 Feb 2024 15:34:28 +0000
+    Ready:          True
+    Restart Count:  2
+    Limits:
+      memory:  170Mi
+    Requests:
+      cpu:        100m
+      memory:     70Mi
+    Liveness:     http-get http://:8080/health delay=60s timeout=1s period=10s #success=1 #failure=3
+    Readiness:    http-get http://:8181/ready delay=0s timeout=1s period=2s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /etc/coredns from config-volume (ro)
+      /etc/coredns/custom from custom-config-volume (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-bn756 (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  config-volume:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      coredns
+    Optional:  false
+  custom-config-volume:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      coredns-custom
+    Optional:  true
+  kube-api-access-bn756:
+    Type:                     Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:   3607
+    ConfigMapName:            kube-root-ca.crt
+    ConfigMapOptional:        <nil>
+    DownwardAPI:              true
+QoS Class:                    Burstable
+Node-Selectors:               kubernetes.io/os=linux
+Tolerations:                  CriticalAddonsOnly op=Exists
+                              node-role.kubernetes.io/control-plane:NoSchedule op=Exists
+                              node-role.kubernetes.io/master:NoSchedule op=Exists
+                              node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Topology Spread Constraints:  kubernetes.io/hostname:DoNotSchedule when max skew 1 is exceeded for selector k8s-app=kube-dns
+Events:                       <none>
+
+
+Name:                 local-path-provisioner-84db5d44d9-dhztn
+Namespace:            kube-system
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      local-path-provisioner-service-account
+Node:                 cloud/192.168.1.101
+Start Time:           Sun, 25 Feb 2024 08:56:35 +0000
+Labels:               app=local-path-provisioner
+                      pod-template-hash=84db5d44d9
+Annotations:          <none>
+Status:               Running
+IP:                   10.42.0.32
+IPs:
+  IP:           10.42.0.32
+Controlled By:  ReplicaSet/local-path-provisioner-84db5d44d9
+Containers:
+  local-path-provisioner:
+    Container ID:  containerd://a5a51329f7f7f25e0b13b2bda25d62c10cfa3039c4b65468bb63a8a68bef5bc6
+    Image:         rancher/local-path-provisioner:v0.0.24
+    Image ID:      docker.io/rancher/local-path-provisioner@sha256:5bb33992a4ec3034c28b5e0b3c4c2ac35d3613b25b79455eb4b1a95adc82cdc0
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      local-path-provisioner
+      start
+      --config
+      /etc/config/config.json
+    State:          Running
+      Started:      Sun, 25 Feb 2024 15:35:14 +0000
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Sun, 25 Feb 2024 15:34:30 +0000
+      Finished:     Sun, 25 Feb 2024 15:35:00 +0000
+    Ready:          True
+    Restart Count:  3
+    Environment:
+      POD_NAMESPACE:  kube-system (v1:metadata.namespace)
+    Mounts:
+      /etc/config/ from config-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-cdrpg (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  config-volume:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      local-path-config
+    Optional:  false
+  kube-api-access-cdrpg:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 CriticalAddonsOnly op=Exists
+                             node-role.kubernetes.io/control-plane:NoSchedule op=Exists
+                             node-role.kubernetes.io/master:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+
+
+Name:                 metrics-server-67c658944b-pzc6f
+Namespace:            kube-system
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      metrics-server
+Node:                 cloud/192.168.1.101
+Start Time:           Sun, 25 Feb 2024 08:56:35 +0000
+Labels:               k8s-app=metrics-server
+                      pod-template-hash=67c658944b
+Annotations:          <none>
+Status:               Running
+IP:                   10.42.0.33
+IPs:
+  IP:           10.42.0.33
+Controlled By:  ReplicaSet/metrics-server-67c658944b
+Containers:
+  metrics-server:
+    Container ID:  containerd://4c3042c35d2c55e6ed91c46510f8c8ee894060ed1a1e9e3b74d9014547de793c
+    Image:         rancher/mirrored-metrics-server:v0.6.3
+    Image ID:      docker.io/rancher/mirrored-metrics-server@sha256:c2dfd72bafd6406ed306d9fbd07f55c496b004293d13d3de88a4567eacc36558
+    Port:          10250/TCP
+    Host Port:     0/TCP
+    Args:
+      --cert-dir=/tmp
+      --secure-port=10250
+      --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+      --kubelet-use-node-status-port
+      --metric-resolution=15s
+      --tls-cipher-suites=TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+    State:          Running
+      Started:      Sun, 25 Feb 2024 15:35:22 +0000
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    2
+      Started:      Sun, 25 Feb 2024 15:34:30 +0000
+      Finished:     Sun, 25 Feb 2024 15:35:01 +0000
+    Ready:          True
+    Restart Count:  3
+    Requests:
+      cpu:        100m
+      memory:     70Mi
+    Liveness:     http-get https://:https/livez delay=60s timeout=1s period=10s #success=1 #failure=3
+    Readiness:    http-get https://:https/readyz delay=0s timeout=1s period=2s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /tmp from tmp-dir (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-bcpmj (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  tmp-dir:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  kube-api-access-bcpmj:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 CriticalAddonsOnly op=Exists
+                             node-role.kubernetes.io/control-plane:NoSchedule op=Exists
+                             node-role.kubernetes.io/master:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+
+
+Name:             bitcoin-price-app-7d8bb6674b-hlp4h
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             cloud/192.168.1.101
+Start Time:       Sun, 25 Feb 2024 16:46:16 +0000
+Labels:           app=bitcoin-price-app
+                  pod-template-hash=7d8bb6674b
+Annotations:      <none>
+Status:           Running
+IP:               10.42.0.41
+IPs:
+  IP:           10.42.0.41
+Controlled By:  ReplicaSet/bitcoin-price-app-7d8bb6674b
+Containers:
+  bitcoin-price-container:
+    Container ID:   containerd://d891c7d83c3594e430faf05c6d54cdef1addd75a690fafc5f8a1742831f7d203
+    Image:          localhost:5000/bitcoin_exporter:latest
+    Image ID:       localhost:5000/bitcoin_exporter@sha256:317df3c154d63e077c1d9b6b2a4224b9cc615c426f265d3118798e8883205f86
+    Port:           8000/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 25 Feb 2024 16:46:16 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-zpfb7 (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-zpfb7:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  20m   default-scheduler  Successfully assigned default/bitcoin-price-app-7d8bb6674b-hlp4h to cloud
+  Normal  Pulling    20m   kubelet            Pulling image "localhost:5000/bitcoin_exporter:latest"
+  Normal  Pulled     20m   kubelet            Successfully pulled image "localhost:5000/bitcoin_exporter:latest" in 33ms (33ms including waiting)
+  Normal  Created    20m   kubelet            Created container bitcoin-price-container
+  Normal  Started    20m   kubelet            Started container bitcoin-price-container
+
+
+Name:             prometheus-deployment-6454fcc569-wvmqw
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             cloud/192.168.1.101
+Start Time:       Sun, 25 Feb 2024 16:51:05 +0000
+Labels:           app=prometheus
+                  pod-template-hash=6454fcc569
+Annotations:      <none>
+Status:           Running
+IP:               10.42.0.42
+IPs:
+  IP:           10.42.0.42
+Controlled By:  ReplicaSet/prometheus-deployment-6454fcc569
+Containers:
+  prometheus:
+    Container ID:   containerd://15a65a9d243bab239fa690d6a27f29fdb404285fb2e9fbdf416519587497d0ee
+    Image:          prom/prometheus:latest
+    Image ID:       docker.io/prom/prometheus@sha256:042258e3578a558ce41b036104dfa997b2d25151ab6889a3f4d6187e27b1176c
+    Port:           9090/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 25 Feb 2024 16:51:07 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /etc/prometheus from prometheus-config-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-9tg7k (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  prometheus-config-volume:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      prometheus-config
+    Optional:  false
+  kube-api-access-9tg7k:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  16m   default-scheduler  Successfully assigned default/prometheus-deployment-6454fcc569-wvmqw to cloud
+  Normal  Pulling    16m   kubelet            Pulling image "prom/prometheus:latest"
+  Normal  Pulled     16m   kubelet            Successfully pulled image "prom/prometheus:latest" in 1.728s (1.728s including waiting)
+  Normal  Created    16m   kubelet            Created container prometheus
+  Normal  Started    16m   kubelet            Started container prometheus
+
+
+Name:             controller-786f9df989-sfbpf
+Namespace:        metallb-system
+Priority:         0
+Service Account:  controller
+Node:             cloud/192.168.1.101
+Start Time:       Sun, 25 Feb 2024 17:00:48 +0000
+Labels:           app=metallb
+                  component=controller
+                  pod-template-hash=786f9df989
+Annotations:      prometheus.io/port: 7472
+                  prometheus.io/scrape: true
+Status:           Running
+IP:               10.42.0.43
+IPs:
+  IP:           10.42.0.43
+Controlled By:  ReplicaSet/controller-786f9df989
+Containers:
+  controller:
+    Container ID:  containerd://d41a4780b690c5d6c521ae86dddc6db1a166824995834ad68ed80896f274d6fb
+    Image:         quay.io/metallb/controller:v0.13.12
+    Image ID:      quay.io/metallb/controller@sha256:2b7eca48ed135e5f298b4ac349ec9f3b3a897ca26cc64d61939d0bfc9dcab847
+    Ports:         7472/TCP, 9443/TCP
+    Host Ports:    0/TCP, 0/TCP
+    Args:
+      --port=7472
+      --log-level=info
+    State:          Running
+      Started:      Sun, 25 Feb 2024 17:01:00 +0000
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:monitoring/metrics delay=10s timeout=1s period=10s #success=1 #failure=3
+    Readiness:      http-get http://:monitoring/metrics delay=10s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      METALLB_ML_SECRET_NAME:  memberlist
+      METALLB_DEPLOYMENT:      controller
+    Mounts:
+      /tmp/k8s-webhook-server/serving-certs from cert (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-dnckq (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  cert:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  webhook-server-cert
+    Optional:    false
+  kube-api-access-dnckq:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  6m22s  default-scheduler  Successfully assigned metallb-system/controller-786f9df989-sfbpf to cloud
+  Normal  Pulling    6m22s  kubelet            Pulling image "quay.io/metallb/controller:v0.13.12"
+  Normal  Pulled     6m11s  kubelet            Successfully pulled image "quay.io/metallb/controller:v0.13.12" in 11.295s (11.295s including waiting)
+  Normal  Created    6m11s  kubelet            Created container controller
+  Normal  Started    6m11s  kubelet            Started container controller
+
+
+Name:             speaker-g8kt8
+Namespace:        metallb-system
+Priority:         0
+Service Account:  speaker
+Node:             cloud/192.168.1.101
+Start Time:       Sun, 25 Feb 2024 17:00:48 +0000
+Labels:           app=metallb
+                  component=speaker
+                  controller-revision-hash=6d4487bcfb
+                  pod-template-generation=1
+Annotations:      prometheus.io/port: 7472
+                  prometheus.io/scrape: true
+Status:           Running
+IP:               192.168.1.101
+IPs:
+  IP:           192.168.1.101
+Controlled By:  DaemonSet/speaker
+Containers:
+  speaker:
+    Container ID:  containerd://39831bde59b54fde4820d1a34643ceb0b7c06be24fcee00c367d5e76f3b3abb6
+    Image:         quay.io/metallb/speaker:v0.13.12
+    Image ID:      quay.io/metallb/speaker@sha256:b4a5576a3cf5816612f54355804bdb83a2560ad4120691129a2e5bac5339ee0c
+    Ports:         7472/TCP, 7946/TCP, 7946/UDP
+    Host Ports:    7472/TCP, 7946/TCP, 7946/UDP
+    Args:
+      --port=7472
+      --log-level=info
+    State:          Running
+      Started:      Sun, 25 Feb 2024 17:01:16 +0000
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:monitoring/metrics delay=10s timeout=1s period=10s #success=1 #failure=3
+    Readiness:      http-get http://:monitoring/metrics delay=10s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      METALLB_NODE_NAME:            (v1:spec.nodeName)
+      METALLB_HOST:                 (v1:status.hostIP)
+      METALLB_ML_BIND_ADDR:         (v1:status.podIP)
+      METALLB_ML_LABELS:           app=metallb,component=speaker
+      METALLB_ML_SECRET_KEY_PATH:  /etc/ml_secret_key
+    Mounts:
+      /etc/metallb from metallb-excludel2 (ro)
+      /etc/ml_secret_key from memberlist (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-z64vz (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  memberlist:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  memberlist
+    Optional:    false
+  metallb-excludel2:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      metallb-excludel2
+    Optional:  false
+  kube-api-access-z64vz:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 node-role.kubernetes.io/control-plane:NoSchedule op=Exists
+                             node-role.kubernetes.io/master:NoSchedule op=Exists
+                             node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/network-unavailable:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+Events:
+  Type     Reason       Age                    From               Message
+  ----     ------       ----                   ----               -------
+  Normal   Scheduled    6m22s                  default-scheduler  Successfully assigned metallb-system/speaker-g8kt8 to cloud
+  Warning  FailedMount  6m15s (x5 over 6m22s)  kubelet            MountVolume.SetUp failed for volume "memberlist" : secret "memberlist" not found
+  Normal   Pulling      6m7s                   kubelet            Pulling image "quay.io/metallb/speaker:v0.13.12"
+  Normal   Pulled       5m55s                  kubelet            Successfully pulled image "quay.io/metallb/speaker:v0.13.12" in 11.92s (11.92s including waiting)
+  Normal   Created      5m55s                  kubelet            Created container speaker
+  Normal   Started      5m55s                  kubelet            Started container speaker

@@ -1,0 +1,2 @@
+docker tag bitcoin_exporter:latest my-registry:5000/bitcoin_exporter:latest
+docker push my-registry:5000/bitcoin_exporter:latest
