@@ -1,0 +1,357 @@
+Name:                   traefik
+Namespace:              kube-system
+CreationTimestamp:      Sun, 25 Feb 2024 08:57:03 +0000
+Labels:                 app.kubernetes.io/instance=traefik-kube-system
+                        app.kubernetes.io/managed-by=Helm
+                        app.kubernetes.io/name=traefik
+                        helm.sh/chart=traefik-25.0.2_up25.0.0
+Annotations:            deployment.kubernetes.io/revision: 1
+                        meta.helm.sh/release-name: traefik
+                        meta.helm.sh/release-namespace: kube-system
+Selector:               app.kubernetes.io/instance=traefik-kube-system,app.kubernetes.io/name=traefik
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  0 max unavailable, 1 max surge
+Pod Template:
+  Labels:           app.kubernetes.io/instance=traefik-kube-system
+                    app.kubernetes.io/managed-by=Helm
+                    app.kubernetes.io/name=traefik
+                    helm.sh/chart=traefik-25.0.2_up25.0.0
+  Annotations:      prometheus.io/path: /metrics
+                    prometheus.io/port: 9100
+                    prometheus.io/scrape: true
+  Service Account:  traefik
+  Containers:
+   traefik:
+    Image:       rancher/mirrored-library-traefik:2.10.5
+    Ports:       9100/TCP, 9000/TCP, 8000/TCP, 8443/TCP
+    Host Ports:  0/TCP, 0/TCP, 0/TCP, 0/TCP
+    Args:
+      --global.checknewversion
+      --global.sendanonymoususage
+      --entrypoints.metrics.address=:9100/tcp
+      --entrypoints.traefik.address=:9000/tcp
+      --entrypoints.web.address=:8000/tcp
+      --entrypoints.websecure.address=:8443/tcp
+      --api.dashboard=true
+      --ping=true
+      --metrics.prometheus=true
+      --metrics.prometheus.entrypoint=metrics
+      --providers.kubernetescrd
+      --providers.kubernetesingress
+      --providers.kubernetesingress.ingressendpoint.publishedservice=kube-system/traefik
+      --entrypoints.websecure.http.tls=true
+    Liveness:   http-get http://:9000/ping delay=2s timeout=2s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:9000/ping delay=2s timeout=2s period=10s #success=1 #failure=1
+    Environment:
+      POD_NAME:        (v1:metadata.name)
+      POD_NAMESPACE:   (v1:metadata.namespace)
+    Mounts:
+      /data from data (rw)
+      /tmp from tmp (rw)
+  Volumes:
+   data:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+   tmp:
+    Type:               EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:             
+    SizeLimit:          <unset>
+  Priority Class Name:  system-cluster-critical
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   traefik-f4564c4f4 (1/1 replicas created)
+Events:          <none>
+
+
+Name:                   coredns
+Namespace:              kube-system
+CreationTimestamp:      Sun, 25 Feb 2024 08:56:24 +0000
+Labels:                 k8s-app=kube-dns
+                        kubernetes.io/name=CoreDNS
+                        objectset.rio.cattle.io/hash=bce283298811743a0386ab510f2f67ef74240c57
+Annotations:            deployment.kubernetes.io/revision: 1
+                        objectset.rio.cattle.io/applied:
+                          H4sIAAAAAAAA/6xVQW/bOBP9Kx/mLMVW0jaugO/QtbPboq3XqJNeCqOgqZHFNcXhkiMnRqD/vhjJduw2TdrFniyTb4ZvHucN70F58xlDNOQgB+V9HGwySGBtXAE5TNBb2tboGBKokV...
+                        objectset.rio.cattle.io/id: 
+                        objectset.rio.cattle.io/owner-gvk: k3s.cattle.io/v1, Kind=Addon
+                        objectset.rio.cattle.io/owner-name: coredns
+                        objectset.rio.cattle.io/owner-namespace: kube-system
+Selector:               k8s-app=kube-dns
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  1 max unavailable, 25% max surge
+Pod Template:
+  Labels:           k8s-app=kube-dns
+  Service Account:  coredns
+  Containers:
+   coredns:
+    Image:       rancher/mirrored-coredns-coredns:1.10.1
+    Ports:       53/UDP, 53/TCP, 9153/TCP
+    Host Ports:  0/UDP, 0/TCP, 0/TCP
+    Args:
+      -conf
+      /etc/coredns/Corefile
+    Limits:
+      memory:  170Mi
+    Requests:
+      cpu:        100m
+      memory:     70Mi
+    Liveness:     http-get http://:8080/health delay=60s timeout=1s period=10s #success=1 #failure=3
+    Readiness:    http-get http://:8181/ready delay=0s timeout=1s period=2s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /etc/coredns from config-volume (ro)
+      /etc/coredns/custom from custom-config-volume (ro)
+  Volumes:
+   config-volume:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      coredns
+    Optional:  false
+   custom-config-volume:
+    Type:                       ConfigMap (a volume populated by a ConfigMap)
+    Name:                       coredns-custom
+    Optional:                   true
+  Topology Spread Constraints:  kubernetes.io/hostname:DoNotSchedule when max skew 1 is exceeded for selector k8s-app=kube-dns
+  Priority Class Name:          system-cluster-critical
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   coredns-6799fbcd5 (1/1 replicas created)
+Events:          <none>
+
+
+Name:                   local-path-provisioner
+Namespace:              kube-system
+CreationTimestamp:      Sun, 25 Feb 2024 08:56:24 +0000
+Labels:                 objectset.rio.cattle.io/hash=183f35c65ffbc3064603f43f1580d8c68a2dabd4
+Annotations:            deployment.kubernetes.io/revision: 1
+                        objectset.rio.cattle.io/applied:
+                          H4sIAAAAAAAA/6xU3W7yRhB9lWqubQMfBCFLvUBJqlZNCEqU3kSoGtZj2LDeXe0Obizkd68Gm/yoIWmlXnl/Zs6emXPGB0Cv/6AQtbOQA3ofB/UIEthpW0AOV+SNayqyDAlUxFggI+...
+                        objectset.rio.cattle.io/id: 
+                        objectset.rio.cattle.io/owner-gvk: k3s.cattle.io/v1, Kind=Addon
+                        objectset.rio.cattle.io/owner-name: local-storage
+                        objectset.rio.cattle.io/owner-namespace: kube-system
+Selector:               app=local-path-provisioner
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  1 max unavailable, 25% max surge
+Pod Template:
+  Labels:           app=local-path-provisioner
+  Service Account:  local-path-provisioner-service-account
+  Containers:
+   local-path-provisioner:
+    Image:      rancher/local-path-provisioner:v0.0.24
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      local-path-provisioner
+      start
+      --config
+      /etc/config/config.json
+    Environment:
+      POD_NAMESPACE:   (v1:metadata.namespace)
+    Mounts:
+      /etc/config/ from config-volume (rw)
+  Volumes:
+   config-volume:
+    Type:               ConfigMap (a volume populated by a ConfigMap)
+    Name:               local-path-config
+    Optional:           false
+  Priority Class Name:  system-node-critical
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   local-path-provisioner-84db5d44d9 (1/1 replicas created)
+Events:          <none>
+
+
+Name:                   metrics-server
+Namespace:              kube-system
+CreationTimestamp:      Sun, 25 Feb 2024 08:56:25 +0000
+Labels:                 k8s-app=metrics-server
+                        objectset.rio.cattle.io/hash=e10e245e13e46a725c9dddd4f9eb239f147774fd
+Annotations:            deployment.kubernetes.io/revision: 1
+                        objectset.rio.cattle.io/applied:
+                          H4sIAAAAAAAA/6xV3W4bNxN9lQ9zvWvv6sdOFtCFIOuLgjqOECktisAQKO5IYsUlWc6sYtXQuxezaztKHcVp0BthRR4enjkznLkHFcyvGMl4BwWoEOh8l0MCW+NKKOAKg/X7Ch1DAh...
+                        objectset.rio.cattle.io/id: 
+                        objectset.rio.cattle.io/owner-gvk: k3s.cattle.io/v1, Kind=Addon
+                        objectset.rio.cattle.io/owner-name: metrics-server-deployment
+                        objectset.rio.cattle.io/owner-namespace: kube-system
+Selector:               k8s-app=metrics-server
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  1 max unavailable, 25% max surge
+Pod Template:
+  Labels:           k8s-app=metrics-server
+  Service Account:  metrics-server
+  Containers:
+   metrics-server:
+    Image:      rancher/mirrored-metrics-server:v0.6.3
+    Port:       10250/TCP
+    Host Port:  0/TCP
+    Args:
+      --cert-dir=/tmp
+      --secure-port=10250
+      --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+      --kubelet-use-node-status-port
+      --metric-resolution=15s
+      --tls-cipher-suites=TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+    Requests:
+      cpu:        100m
+      memory:     70Mi
+    Liveness:     http-get https://:https/livez delay=60s timeout=1s period=10s #success=1 #failure=3
+    Readiness:    http-get https://:https/readyz delay=0s timeout=1s period=2s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /tmp from tmp-dir (rw)
+  Volumes:
+   tmp-dir:
+    Type:               EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:             
+    SizeLimit:          <unset>
+  Priority Class Name:  system-node-critical
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   metrics-server-67c658944b (1/1 replicas created)
+Events:          <none>
+
+
+Name:                   bitcoin-price-app
+Namespace:              default
+CreationTimestamp:      Sun, 25 Feb 2024 16:46:16 +0000
+Labels:                 <none>
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=bitcoin-price-app
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=bitcoin-price-app
+  Containers:
+   bitcoin-price-container:
+    Image:        localhost:5000/bitcoin_exporter:latest
+    Port:         8000/TCP
+    Host Port:    0/TCP
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   bitcoin-price-app-7d8bb6674b (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  20m   deployment-controller  Scaled up replica set bitcoin-price-app-7d8bb6674b to 1
+
+
+Name:                   prometheus-deployment
+Namespace:              default
+CreationTimestamp:      Sun, 25 Feb 2024 16:51:05 +0000
+Labels:                 <none>
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=prometheus
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=prometheus
+  Containers:
+   prometheus:
+    Image:        prom/prometheus:latest
+    Port:         9090/TCP
+    Host Port:    0/TCP
+    Environment:  <none>
+    Mounts:
+      /etc/prometheus from prometheus-config-volume (rw)
+  Volumes:
+   prometheus-config-volume:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      prometheus-config
+    Optional:  false
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   prometheus-deployment-6454fcc569 (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  16m   deployment-controller  Scaled up replica set prometheus-deployment-6454fcc569 to 1
+
+
+Name:                   controller
+Namespace:              metallb-system
+CreationTimestamp:      Sun, 25 Feb 2024 17:00:48 +0000
+Labels:                 app=metallb
+                        component=controller
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=metallb,component=controller
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:           app=metallb
+                    component=controller
+  Annotations:      prometheus.io/port: 7472
+                    prometheus.io/scrape: true
+  Service Account:  controller
+  Containers:
+   controller:
+    Image:       quay.io/metallb/controller:v0.13.12
+    Ports:       7472/TCP, 9443/TCP
+    Host Ports:  0/TCP, 0/TCP
+    Args:
+      --port=7472
+      --log-level=info
+    Liveness:   http-get http://:monitoring/metrics delay=10s timeout=1s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:monitoring/metrics delay=10s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      METALLB_ML_SECRET_NAME:  memberlist
+      METALLB_DEPLOYMENT:      controller
+    Mounts:
+      /tmp/k8s-webhook-server/serving-certs from cert (ro)
+  Volumes:
+   cert:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  webhook-server-cert
+    Optional:    false
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   controller-786f9df989 (1/1 replicas created)
+Events:
+  Type    Reason             Age    From                   Message
+  ----    ------             ----   ----                   -------
+  Normal  ScalingReplicaSet  6m23s  deployment-controller  Scaled up replica set controller-786f9df989 to 1

@@ -1,0 +1,34 @@
+#Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitcoin-price-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bitcoin-price-app
+  template:
+    metadata:
+      labels:
+        app: bitcoin-price-app
+    spec:
+      containers:
+        - name: bitcoin-price-container
+          image: localhost:5000/bitcoin_exporter:latest  
+          ports:
+            - containerPort: 8000
+#Service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitcoin-price-service
+spec:
+  selector:
+    app: bitcoin-price-app
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: NodePort
